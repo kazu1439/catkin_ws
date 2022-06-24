@@ -1,0 +1,3 @@
+<launch>
+<node name="sample" pkg="switch" type="sample.py" respawn="false" output="screen"></node>
+</launch>
