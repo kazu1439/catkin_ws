@@ -1,3 +1,11 @@
 <launch>
-<node name="sample" pkg="switch" type="sample.py" respawn="false" output="screen"></node>
+<node name="sample" pkg="switch" type="sample.py" respawn="false" output="screen">
+    <param name="str_param" type="string" value="/dev/input/js2" />
+</node>
+<!-- <node pkg="joy" type="joy_node" name="joy" respawn="true" >
+    <param name="dev" type="string" value="/dev/input/js2" />
+</node> -->
+<node name="samplec" pkg="switch" type="samplec" output="screen">
+    <param name="int_param" value="1"/>
+</node>
 </launch>

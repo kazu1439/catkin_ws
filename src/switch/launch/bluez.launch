@@ -1,0 +1,5 @@
+<launch>
+<node name="bluez" pkg="switch" type="bluez.py" respawn="false" output="screen">
+    <!-- <param name="str_param" type="string" value="/dev/input/js2" /> -->
+</node>
+</launch>
