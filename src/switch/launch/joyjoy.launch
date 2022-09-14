@@ -6,9 +6,9 @@
     <node pkg="joy" type="joy_node" name="joy1" respawn="true" >
         <param name="dev" type="string" value="/dev/input/js3" /> <!-- デバイスファイルパスを正しく設定してください -->
     </node>
-    <node pkg="switch" type="joyjoy" name="joyjoy" output="screen" >
-        <param name="ControlCycle" type="double" value="0.02" /> <!-- 制御周期を正しく設定してください -->
-        <param name="NumberOfJoy" type="int" value="3" /> <!-- Joyの数を正しく設定してください -->
+
+    <node pkg="joyjoy" type="joyjoy" name="joyjoy" output="screen" >
+        <param name="NumberOfJoy" type="int" value="2" /> <!-- Joyの数を正しく設定してください -->
         <!-- Joyが必要な分だけparamを設定してください。nameの添え字は0からスタートです。 -->
         <param name="joy0" type="string" value="/dev/input/js2" /> <!-- デバイスファイルパスを正しく設定してください -->
         <param name="joy1" type="string" value="/dev/input/js3" /> <!-- デバイスファイルパスを正しく設定してください -->

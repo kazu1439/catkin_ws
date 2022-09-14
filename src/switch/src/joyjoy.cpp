@@ -5,6 +5,7 @@
 sensor_msgs::Joy Message;
 std::vector<std::string> ids;
 std::vector<ros::Publisher> pubs;
+int length = 1;
 
 
 inline void joys_Callback( const sensor_msgs::Joy::ConstPtr &joy_msg );
@@ -14,7 +15,6 @@ int main( int argc, char **argv ){
     ros::NodeHandle nh;
     ros::NodeHandle pnh("~");
 
-    int length = 1;
     pnh.getParam("NumberOfJoy",length);
     for (int i=0; i<length; i++){
         std::string a = "joy" + std::to_string(i);
@@ -30,21 +30,8 @@ int main( int argc, char **argv ){
         ros::Publisher pub_joy = nh.advertise<sensor_msgs::Joy>(a, 1000);
         pubs.emplace_back(pub_joy);
     }
-    
-    double ControlCycle = 0.02;
-    pnh.getParam("ControlCycle", ControlCycle);
-    ros::Rate loop_rate( 1.0f/ControlCycle );
 
-    while ( ros::ok()){
-        ROS_INFO("%s",Message.header.frame_id.c_str());
-        ros::spinOnce();
-        loop_rate.sleep();
-        for (int i=0; i<length; i++){
-            if(ids[i]==Message.header.frame_id){
-                pubs[i].publish(Message);
-            }
-        }
-    }
+    ros::spin();
     return 0;
 }
 
@@ -53,4 +40,9 @@ inline void joys_Callback( const sensor_msgs::Joy::ConstPtr &joy_msg ){
     Message.header = joy_msg->header;
     Message.axes = joy_msg->axes;
     Message.buttons = joy_msg->buttons;
+    for (int i=0; i<length; i++){
+        if(ids[i]==Message.header.frame_id){
+            pubs[i].publish(Message);
+        }
+    }
 }
