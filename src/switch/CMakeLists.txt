@@ -205,11 +205,11 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(samplec src/samplec.cpp)
-target_link_libraries(samplec ${catkin_LIBRARIES})
+#add_executable(samplec src/samplec.cpp)
+#target_link_libraries(samplec ${catkin_LIBRARIES})
 
-add_executable(comtest src/comtest.cpp)
-target_link_libraries(comtest ${catkin_LIBRARIES})
+#add_executable(comtest src/comtest.cpp)
+#target_link_libraries(comtest ${catkin_LIBRARIES})
 
-add_executable(joyjoy src/joyjoy.cpp)
-target_link_libraries(joyjoy ${catkin_LIBRARIES})
+#add_executable(joyjoy src/joyjoy.cpp)
+#target_link_libraries(joyjoy ${catkin_LIBRARIES})
