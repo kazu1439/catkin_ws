@@ -1,4 +1,6 @@
 #include <ros/ros.h>
+#include <roblab/timer.h>
+#include <roblab/JoyJoy.h>
 
 int main(int argc, char** argv)
 {
@@ -10,6 +12,7 @@ int main(int argc, char** argv)
   int p = 0;
   nh.getParam("samplec/int_param",p);
   ROS_INFO("[%s] param:%i", ros::this_node::getName().c_str(), p);
+  Timer t(10); 
 
   ros::spin();
   return 0;

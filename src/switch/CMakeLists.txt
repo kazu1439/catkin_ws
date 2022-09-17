@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  roblab
 )
 
 ## System dependencies are found with CMake's conventions
@@ -143,7 +144,6 @@ include_directories(
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -206,7 +206,12 @@ include_directories(
 # catkin_add_nosetests(test)
 
 #add_executable(samplec src/samplec.cpp)
+#add_dependencies(samplec ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 #target_link_libraries(samplec ${catkin_LIBRARIES})
+
+add_executable(libtest src/libtest.cpp)
+add_dependencies(libtest ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(libtest ${catkin_LIBRARIES})
 
 #add_executable(comtest src/comtest.cpp)
 #target_link_libraries(comtest ${catkin_LIBRARIES})

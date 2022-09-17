@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="switch" type="libtest" name="libtest" output="screen" >
+    </node>
+</launch>
