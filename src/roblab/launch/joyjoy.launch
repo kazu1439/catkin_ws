@@ -14,7 +14,7 @@
     </node>
 
     <node pkg="roblab" type="joyjoy" name="joyjoy">
-        <param name="ControlCycle" type="double" value="0.02"/>
+        <param name="ControlCycle" type="double" value="0.02"/> <!-- 制御周期を正しく設定してください -->
         <param name="NumberOfJoy" type="int" value="2" /> <!-- Joyの数を正しく設定してください -->
         <!-- Joyが必要な分だけparamを設定してください。nameの添え字は0からスタートです。 -->
         <param name="joy0" type="string" value="/dev/input/js2" /> <!-- デバイスファイルパスを正しく設定してください -->
