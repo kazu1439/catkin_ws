@@ -8,8 +8,8 @@
     -->
     </style>
     <title>ROS WEB Publisher</title>
-    <script src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-    <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+    <script src="./eventemitter2.js"></script>
+    <script src="./roslib.js"></script>
   </head>
 
   <body>
@@ -20,6 +20,7 @@ if(!Talker){
     var Talker = {
         ros : null,
         name : "",
+        IP : "",
         init : function(){
             this.ros = new ROSLIB.Ros();
             this.ros.on('error', function(error) {
@@ -40,11 +41,15 @@ if(!Talker){
                 ros : this.ros,
                 name : '/chatter',
                 messageType : 'std_msgs/String',
-                url: 'ws://192.168.0.9:9090/'
+                url: 'ws://' + this.IP + ':9090/'
             });
 
             var str = new ROSLIB.Message({data : comment});
             pub.publish(str);
+        },
+        setIP : function(){
+          if(document.getElementById("comment").value.length == 0) return;
+          this.IP = document.getElementById("IP").value;
         }
     }
     Talker.init();
@@ -57,12 +62,18 @@ if(!Talker){
 }
         //-->
     </script>
+    <form action="javascript:Talker.setIP();">
+      <label>IP: </label>
+      <input type="text" id="IP" size="20" />
+      <input type="submit" value="set"/><br/>
+    </form>
+
     <p>status： <label id="state">Disconnect</label></p>
 
-    <form action="javascript:Talker.send();" id="ui">
+    <form action="javascript:Talker.send();">
       <label>Comment: </label>
       <input type="text" id="comment" size="20" />
-      <input type="submit" value="send" id="btn" /><br/>
+      <input type="submit" value="send"/><br/>
     </form>
   </body>
 </html>
