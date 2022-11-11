@@ -1,6 +1,7 @@
 * {
   padding: 0px;
   margin: 0px;
+  user-select:none;
   -webkit-user-select:none;
 }
 html,body{
