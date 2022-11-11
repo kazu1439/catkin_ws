@@ -42,6 +42,14 @@ class button{
     }
   }
 
+  function isSmartPhone() {
+    if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   var poseX = 0;
   var poseY = 0;
   class stick{
@@ -54,8 +62,13 @@ class button{
       this._startX = 0;
       this._startY = 0;
       document.getElementById("btnArea").addEventListener('mousemove',(mm)=>{
-        poseX = mm.x/50;
-        poseY = mm.y/50;
+        if(isSmartPhone()){
+          // mm.preventDefault();
+        }
+        else{
+          poseX = mm.x/50;
+          poseY = mm.y/50;
+        }
         if(this.getValue()==1){
           var L = Math.sqrt((this.getstartX()-poseX)*(this.getstartX()-poseX) + (this.getstartY()-poseY)*(this.getstartY()-poseY));
           if(L>1){
@@ -74,11 +87,17 @@ class button{
         this._obj.style.top = (this.getY()*(-0.5)+0.5)*70+"%";
       },false);
       document.getElementById("btnArea").addEventListener('touchmove',(mm)=>{
-        poseX = mm.x/50;
-        poseY = mm.y/50;
+        if(isSmartPhone()){
+          mm.preventDefault();
+          poseX = mm.touches[0].pageX/50;
+          poseY = mm.touches[0].pageY/50;
+        }
+        else{
+          poseX = mm.touches[0].pageX;
+          poseY = mm.touches[0].pageY;
+        }
         if(this.getValue()==1){
           var L = Math.sqrt((this.getstartX()-poseX)*(this.getstartX()-poseX) + (this.getstartY()-poseY)*(this.getstartY()-poseY));
-          L = L/100;
           if(L>1){
             this.setX((this.getstartX()-poseX)/L);
             this.setY((this.getstartY()-poseY)/L);
@@ -97,8 +116,16 @@ class button{
       document.getElementById("btnArea").addEventListener('mouseup',()=>{this.setValue(0);},false);
       document.getElementById("btnArea").addEventListener('touchend',()=>{this.setValue(0);},false);
       document.getElementById("btnArea").addEventListener('touchcancel',()=>{this.setValue(0);},false);
-      this._obj.addEventListener('mousedown',()=>{this.setValue(1);this.setstartX();this.setstartY();},false);
-      this._obj.addEventListener('touchstart',()=>{this.setValue(1);this.setstartX();this.setstartY();},false);
+      this._obj.addEventListener('mousedown',(mm)=>{this.setValue(1);
+        poseX = mm.x/50;
+        poseY = mm.y/50;
+        this.setstartX();
+        this.setstartY();},false);
+      this._obj.addEventListener('touchstart',(mm)=>{this.setValue(1);
+        poseX = mm.touches[0].pageX/50;
+        poseY = mm.touches[0].pageY/50;
+        this.setstartX();
+        this.setstartY();},false);
       this._obj.addEventListener('mouseup',()=>{this.setValue(0);},false);
       this._obj.addEventListener('touchend',()=>{this.setValue(0);},false);
       this._obj.addEventListener('touchcancel',()=>{this.setValue(0);},false);
