@@ -298,7 +298,7 @@ class button{
               pub.publish(msg);
           },
           getIp : function(){
-            if(document.getElementById("IP").value.length == 0) return;
+            if(document.getElementById("IP").value.length == 0) return location.hostname;
             return document.getElementById("IP").value;
           },
           getJoy : function(ID){
@@ -338,7 +338,7 @@ class button{
       setInterval(function (){
         joy_data = Talker.getJoy(Id);
         ip = Talker.getIp();
-        //console.log(ip);
+        console.log(ip);
         if(Id>=0){
           Talker.send(joy_data,ip);
         }

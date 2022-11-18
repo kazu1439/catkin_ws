@@ -216,11 +216,11 @@ class ROSWWWServer():
     def _start_webserver(self):
         default, start, end = self._ports
         try:
-            http_server = tornado.httpserver.HTTPServer(self._application, ssl_options={
-                "certfile":self._certpath,
-                "keyfile":self._keypath,
-            })
             if self._certpath != "" or self._keypath != "":
+                http_server = tornado.httpserver.HTTPServer(self._application, ssl_options={
+                    "certfile":self._certpath,
+                    "keyfile":self._keypath,
+                })
                 http_server.listen(default)
                 self.loginfo("Webserver successfully started on port %s"%default)
             tornado.ioloop.IOLoop.instance().start()
