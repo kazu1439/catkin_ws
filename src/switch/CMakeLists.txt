@@ -214,8 +214,8 @@ add_executable(libtest src/libtest.cpp)
 add_dependencies(libtest ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(libtest ${catkin_LIBRARIES})
 
-#add_executable(comtest src/comtest.cpp)
-#target_link_libraries(comtest ${catkin_LIBRARIES})
+add_executable(comtest src/comtest.cpp)
+target_link_libraries(comtest ${catkin_LIBRARIES})
 
 #add_executable(joyjoy src/joyjoy.cpp)
 #target_link_libraries(joyjoy ${catkin_LIBRARIES})
