@@ -22,6 +22,7 @@ int main(int argc, char **argv)
   ros::Publisher intArray_pub = n.advertise<std_msgs::Int32MultiArray>("test_intArray", 1);
   ros::Publisher float_pub = n.advertise<std_msgs::Float32>("test_float", 1);
   ros::Publisher floatArray_pub = n.advertise<std_msgs::Float32MultiArray>("test_floatArray", 1);
+  ros::Publisher bool_pub = n.advertise<std_msgs::Bool>("test_bool", 1);
   ros::Subscriber sub = n.subscribe("led2", 1000, chatterCallback);
 
   ros::Rate loop_rate(10);
@@ -52,6 +53,9 @@ int main(int argc, char **argv)
     msg_floatArray.data[1] = 1.4;
     msg_floatArray.data[2] = 20.01;
     floatArray_pub.publish(msg_floatArray);
+    std_msgs::Bool msg_bool;
+    msg_bool.data = true;
+    bool_pub.publish(msg_bool);
 
 
     ros::spinOnce();
